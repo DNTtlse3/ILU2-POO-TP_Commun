@@ -28,30 +28,24 @@ public class CalendrierAnnuel {
 
 	
 	public boolean estLibre(int jour, int mois) {
-		return annee[mois].estLibre(jour);	
+		return annee[mois-1].estLibre(jour);	
 		
 	}
 	
 	
 	public boolean reserver(int jour, int mois) {
-		boolean msg;
-		
 		try {
-			
-			annee[mois].Reserver(jour);
-			msg = true;
+			annee[mois-1].Reserver(jour);
+			return true;
 		}catch (Exception e) {
 			
 			// TODO: handle exception
 			e.printStackTrace();
-			msg = false;
-			
-		}finally {
-			return msg;
-		}
+			return false;
+
 	}
 
-
+	}
 	///////INNER CLASS\\\\\\\
 	
 	private static class Mois {
@@ -89,7 +83,7 @@ public class CalendrierAnnuel {
 				throw new IllegalStateException("Ce jour n'est pas disponibles");
 			}else {
 				/*On réserve le jour*/
-				this.jour[jour] = false;
+				this.jour[jour-1] = false;
 			}
 		}
 		
